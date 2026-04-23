@@ -3,48 +3,39 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Build & Test') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/RiddhiPatil15/Wikipedia_Automation.git'
+                bat 'mvn clean test'
             }
         }
 
-        stage('Clean Project') {
+        stage('JMeter Test') {
             steps {
-                bat 'mvn clean'
+                bat '''
+                if exist report rmdir /s /q report
+                if exist results.jtl del results.jtl
+                jmeter -n -t jmeter/wikipedia_load_test.jmx -l results.jtl -e -o report
+                '''
             }
         }
 
-        stage('Generate Feature File') {
+        stage('Allure Report') {
             steps {
-                bat 'mvn exec:java -Dexec.mainClass="utils.FeatureGeneratorRunner"'
+                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
             }
         }
 
-        stage('Run Tests') {
+        stage('Publish JMeter Report') {
             steps {
-                bat 'mvn test'
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'report',
+                    reportFiles: 'index.html',
+                    reportName: 'JMeter Report'
+                ])
             }
-        }
-
-        stage('Generate Allure Report') {
-            steps {
-                allure includeProperties: false,
-                       results: [[path: 'target/allure-results']]
-            }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: 'target/*.txt', fingerprint: true
-        }
-        success {
-            echo 'Build Successful ✅'
-        }
-        failure {
-            echo 'Build Failed ❌'
         }
     }
 }
