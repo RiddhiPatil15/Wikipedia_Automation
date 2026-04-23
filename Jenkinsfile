@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'   // make sure Maven is configured in Jenkins
-        jdk 'Java'      // make sure JDK is configured
+        maven 'Maven_Latest'
+        jdk 'JDK17'
     }
 
     stages {
@@ -35,16 +35,12 @@ pipeline {
         stage('JMeter Test') {
             steps {
                 echo 'Running JMeter Tests (if configured)'
-                // Example:
-                // bat 'jmeter -n -t testplan.jmx -l result.jtl'
             }
         }
 
         stage('Allure Report') {
             steps {
                 echo 'Generating Allure Report'
-                // Requires Allure plugin installed
-                // allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
             }
         }
 
