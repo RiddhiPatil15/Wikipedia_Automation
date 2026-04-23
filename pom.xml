@@ -66,14 +66,20 @@
 
     </dependencies>
 
-         <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>exec-maven-plugin</artifactId>
-    <version>3.1.0</version>
-    <configuration>
-        <mainClass>utils.FeatureGeneratorRunner</mainClass>
-        <classpathScope>test</classpathScope>  
-    </configuration>
-</plugin>
+         <build>
+    <plugins>
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+                <mainClass>utils.FeatureGeneratorRunner</mainClass>
+                <classpathScope>test</classpathScope>
+            </configuration>
+        </plugin>
+
+    </plugins>
+</build>
 
 </project>
