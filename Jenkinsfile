@@ -10,9 +10,9 @@ pipeline {
             }
         }
 
-        stage('Build & Test') {
+        stage('Clean Project') {
             steps {
-                bat 'mvn clean test'
+                bat 'mvn clean'
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        stage('Run Tests Again') {
+        stage('Run Tests') {
             steps {
                 bat 'mvn test'
             }
@@ -63,12 +63,6 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'target/*.txt', fingerprint: true
-        }
-        success {
-            echo 'Build Successful'
-        }
-        failure {
-            echo 'Build Failed'
         }
     }
 }
