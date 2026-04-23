@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+
+  <hashTree>
+
+    <!-- TEST PLAN -->
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Wikipedia Simple Fixed Load Test" enabled="true">
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+    </TestPlan>
+
+    <hashTree>
+
+      <!-- THREAD GROUP -->
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="5 Users Test (Safe)" enabled="true">
+
+        <stringProp name="ThreadGroup.num_threads">3</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">5</stringProp>
+
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">2</stringProp>
+        </elementProp>
+
+      </ThreadGroup>
+
+      <hashTree>
+
+        <!-- HTTP REQUEST -->
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Wikipedia Main Page Request" enabled="true">
+
+          <stringProp name="HTTPSampler.domain">en.wikipedia.org</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/wiki/Main_Page</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+
+        </HTTPSamplerProxy>
+
+        <hashTree/>
+
+        <!-- HEADER MANAGER (FIX 403) -->
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+
+          <collectionProp name="HeaderManager.headers">
+
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">User-Agent</stringProp>
+              <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36</stringProp>
+            </elementProp>
+
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">text/html,application/xhtml+xml</stringProp>
+            </elementProp>
+
+          </collectionProp>
+
+        </HeaderManager>
+
+        <hashTree/>
+
+        <!-- LISTENERS -->
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true"/>
+        <hashTree/>
+
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true"/>
+        <hashTree/>
+
+      </hashTree>
+    </hashTree>
+  </hashTree>
+
+</jmeterTestPlan>

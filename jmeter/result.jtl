@@ -1,0 +1,13 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1776766340792,1446,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-2,text,true,,237137,215,2,2,https://en.wikipedia.org/wiki/Main_Page,612,0,417
+1776766339393,2844,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-1,text,true,,237137,215,2,2,https://en.wikipedia.org/wiki/Main_Page,1326,0,1148
+1776766342254,1418,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-1,text,true,,237137,215,3,3,https://en.wikipedia.org/wiki/Main_Page,575,0,375
+1776766342254,1467,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-2,text,true,,237137,215,2,2,https://en.wikipedia.org/wiki/Main_Page,575,0,375
+1776766342455,1404,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-3,text,true,,237137,215,1,1,https://en.wikipedia.org/wiki/Main_Page,589,0,385
+1776766343861,1128,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-3,text,true,,237137,215,1,1,https://en.wikipedia.org/wiki/Main_Page,518,0,311
+1776766378086,1418,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-1,text,true,,237137,215,1,1,https://en.wikipedia.org/wiki/Main_Page,911,0,740
+1776766379615,1158,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-2,text,true,,237137,215,2,2,https://en.wikipedia.org/wiki/Main_Page,597,0,396
+1776766379521,1292,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-1,text,true,,237137,215,2,2,https://en.wikipedia.org/wiki/Main_Page,486,0,278
+1776766380778,1044,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-2,text,true,,237137,215,2,2,https://en.wikipedia.org/wiki/Main_Page,524,0,354
+1776766381284,970,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-3,text,true,,237137,215,1,1,https://en.wikipedia.org/wiki/Main_Page,398,0,270
+1776766382255,1461,Wikipedia Main Page Request,200,OK,5 Users Test (Safe) 1-3,text,true,,237137,215,1,1,https://en.wikipedia.org/wiki/Main_Page,621,0,412

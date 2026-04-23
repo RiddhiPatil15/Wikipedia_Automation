@@ -1,6 +1,15 @@
 Feature: Wikipedia Search
 
-  Scenario: Search keyword from Excel
+  Scenario Outline: Search keyword
     Given user is on Wikipedia home page
-    When user searches for a keyword from Excel
-    Then results page should be displayed
+    When user searches for "<keyword>"
+    Then results should be validated and stored
+
+  Examples:
+    | keyword |
+    | Selenium |
+    | Java |
+    | Automation |
+    | Cucumber Framework |
+    | TestNG |
+    | RestAssured |

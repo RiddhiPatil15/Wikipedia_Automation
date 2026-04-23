@@ -1,0 +1,34 @@
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 12,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 1420.8333333333333,
+    "medianResTime" : 1411.0,
+    "minResTime" : 970.0,
+    "maxResTime" : 2844.0,
+    "pct1ResTime" : 2430.9000000000015,
+    "pct2ResTime" : 2844.0,
+    "pct3ResTime" : 2844.0,
+    "throughput" : 0.2707397964939196,
+    "receivedKBytesPerSec" : 62.69767882927599,
+    "sentKBytesPerSec" : 0.05684478149042258
+  },
+  "Wikipedia Main Page Request" : {
+    "transaction" : "Wikipedia Main Page Request",
+    "sampleCount" : 12,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 1420.8333333333333,
+    "medianResTime" : 1411.0,
+    "minResTime" : 970.0,
+    "maxResTime" : 2844.0,
+    "pct1ResTime" : 2430.9000000000015,
+    "pct2ResTime" : 2844.0,
+    "pct3ResTime" : 2844.0,
+    "throughput" : 0.2707397964939196,
+    "receivedKBytesPerSec" : 62.69767882927599,
+    "sentKBytesPerSec" : 0.05684478149042258
+  }
+}
