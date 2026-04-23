@@ -6,11 +6,16 @@ pipeline {
         jdk 'jdk17'
     }
 
+    environment {
+        MAVEN_OPTS = '-Xms256m -Xmx1024m'
+    }
+
     stages {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/RiddhiPatil15/Wikipedia_Automation.git'
+                git branch: 'main',
+                    url: 'https://github.com/RiddhiPatil15/Wikipedia_Automation.git'
             }
         }
 
@@ -20,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Generate Feature File') {
+        stage('Generate Feature Files') {
             steps {
                 bat 'mvn test-compile exec:java -Dexec.mainClass="utils.FeatureGeneratorRunner" -Dexec.classpathScope=test'
             }
@@ -32,34 +37,25 @@ pipeline {
             }
         }
 
-        stage('JMeter Test') {
-            steps {
-                echo 'Running JMeter Tests (if configured)'
-            }
-        }
-
         stage('Allure Report') {
             steps {
                 echo 'Generating Allure Report'
-            }
-        }
-
-        stage('Publish Reports') {
-            steps {
-                echo 'Publishing reports'
+                bat 'mvn allure:report'
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: '**/target/*.html', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/target/*.html, **/target/allure-results/**', allowEmptyArchive: true
         }
+
         success {
-            echo '✅ Build SUCCESS'
+            echo '✅ BUILD SUCCESS'
         }
+
         failure {
-            echo '❌ Build FAILED'
+            echo '❌ BUILD FAILED'
         }
     }
 }
