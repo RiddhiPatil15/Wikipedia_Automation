@@ -1,0 +1,29 @@
+2026-04-21 12:28:06,972 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2026-04-21 12:28:06,988 INFO o.a.j.JMeter: Loading user properties from: C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\apache-jmeter-5.6.3\bin\user.properties
+2026-04-21 12:28:06,989 INFO o.a.j.JMeter: Loading system properties from: C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\apache-jmeter-5.6.3\bin\system.properties
+2026-04-21 12:28:06,997 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2026-04-21 12:28:06,997 INFO o.a.j.JMeter: Version 5.6.3
+2026-04-21 12:28:06,997 INFO o.a.j.JMeter: java.version=25.0.2
+2026-04-21 12:28:06,997 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2026-04-21 12:28:06,997 INFO o.a.j.JMeter: os.name=Windows 11
+2026-04-21 12:28:06,998 INFO o.a.j.JMeter: os.arch=amd64
+2026-04-21 12:28:06,998 INFO o.a.j.JMeter: os.version=10.0
+2026-04-21 12:28:06,998 INFO o.a.j.JMeter: file.encoding=UTF-8
+2026-04-21 12:28:06,998 INFO o.a.j.JMeter: java.awt.headless=true
+2026-04-21 12:28:06,998 INFO o.a.j.JMeter: Max memory     =1073741824
+2026-04-21 12:28:06,998 INFO o.a.j.JMeter: Available Processors =14
+2026-04-21 12:28:07,011 INFO o.a.j.JMeter: Default Locale=English (EN)
+2026-04-21 12:28:07,012 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2026-04-21 12:28:07,012 INFO o.a.j.JMeter: JMeterHome=C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\apache-jmeter-5.6.3
+2026-04-21 12:28:07,012 INFO o.a.j.JMeter: user.dir  =C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\WikipediaBasedProject
+2026-04-21 12:28:07,013 INFO o.a.j.JMeter: PWD       =C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\WikipediaBasedProject
+2026-04-21 12:28:07,155 INFO o.a.j.JMeter: IP: 172.31.27.84 Name: LAPTOP-RiddhiRishi FullName: 172.31.27.84
+2026-04-21 12:28:07,179 ERROR o.a.j.JMeter: An error occurred: 
+java.lang.IllegalArgumentException: Cannot write to 'C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\WikipediaBasedProject\jmeter\report' as folder is not empty
+	at org.apache.jorphan.util.JOrphanUtils.canSafelyWriteToFolder(JOrphanUtils.java:664) ~[jorphan.jar:5.6.3]
+	at org.apache.jorphan.util.JOrphanUtils.canSafelyWriteToFolder(JOrphanUtils.java:620) ~[jorphan.jar:5.6.3]
+	at org.apache.jmeter.JMeter.extractAndSetReportOutputFolder(JMeter.java:542) ~[ApacheJMeter_core.jar:5.6.3]
+	at org.apache.jmeter.JMeter.start(JMeter.java:492) [ApacheJMeter_core.jar:5.6.3]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.apache.jmeter.NewDriver.main(NewDriver.java:259) [ApacheJMeter.jar:5.6.3]
