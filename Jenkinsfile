@@ -5,11 +5,12 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/RiddhiPatil15/Wikipedia_Automation.git'
+                git branch: 'main',
+                    url: 'https://github.com/RiddhiPatil15/Wikipedia_Automation.git'
             }
         }
 
-        stage('Clean & Build') {
+        stage('Clean Project') {
             steps {
                 bat 'mvn clean'
             }
@@ -30,7 +31,6 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 allure includeProperties: false,
-                       jdk: '',
                        results: [[path: 'target/allure-results']]
             }
         }
@@ -41,10 +41,10 @@ pipeline {
             archiveArtifacts artifacts: 'target/*.txt', fingerprint: true
         }
         success {
-            echo 'Build Successful'
+            echo 'Build Successful ✅'
         }
         failure {
-            echo 'Build Failed'
+            echo 'Build Failed ❌'
         }
     }
 }
