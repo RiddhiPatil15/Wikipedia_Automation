@@ -8,6 +8,7 @@ pipeline {
 
     environment {
         MAVEN_OPTS = '-Xms256m -Xmx1024m'
+        MAVEN_REPO = "${WORKSPACE}\\.m2"
     }
 
     stages {
@@ -19,34 +20,83 @@ pipeline {
             }
         }
 
+        // ✅ Create isolated Maven repo (no global dependency)
         stage('Init Local Maven Repo') {
             steps {
-                bat 'mkdir "%WORKSPACE%\\.m2"'
+                bat 'if not exist "%MAVEN_REPO%" mkdir "%MAVEN_REPO%"'
             }
         }
 
+        // ✅ Force Maven to use stable central repo
+        stage('Setup Maven Settings') {
+            steps {
+                writeFile file: 'settings.xml', text: '''
+<settings>
+  <mirrors>
+    <mirror>
+      <id>central</id>
+      <mirrorOf>*</mirrorOf>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </mirror>
+  </mirrors>
+</settings>
+'''
+            }
+        }
+
+        // ✅ Clean with retry (handles network failures)
         stage('Clean Project') {
             steps {
-                bat 'mvn clean -Dmaven.repo.local="%WORKSPACE%\\.m2"'
+                retry(2) {
+                    bat '''
+                    mvn clean ^
+                    -s settings.xml ^
+                    -Dmaven.repo.local="%MAVEN_REPO%" ^
+                    -Dhttps.protocols=TLSv1.2
+                    '''
+                }
             }
         }
 
+        // ✅ Generate feature files
         stage('Generate Feature Files') {
             steps {
-                bat 'mvn test-compile exec:java -Dmaven.repo.local="%WORKSPACE%\\.m2" -Dexec.mainClass="utils.FeatureGeneratorRunner" -Dexec.classpathScope=test'
+                retry(2) {
+                    bat '''
+                    mvn test-compile exec:java ^
+                    -s settings.xml ^
+                    -Dmaven.repo.local="%MAVEN_REPO%" ^
+                    -Dexec.mainClass="utils.FeatureGeneratorRunner" ^
+                    -Dexec.classpathScope=test ^
+                    -Dhttps.protocols=TLSv1.2
+                    '''
+                }
             }
         }
 
+        // ✅ Run tests
         stage('Run Tests') {
             steps {
-                bat 'mvn test -Dmaven.repo.local="%WORKSPACE%\\.m2"'
+                retry(2) {
+                    bat '''
+                    mvn test ^
+                    -s settings.xml ^
+                    -Dmaven.repo.local="%MAVEN_REPO%" ^
+                    -Dhttps.protocols=TLSv1.2
+                    '''
+                }
             }
         }
 
+        // ✅ Allure report
         stage('Allure Report') {
             steps {
                 echo 'Generating Allure Report'
-                bat 'mvn allure:report -Dmaven.repo.local="%WORKSPACE%\\.m2"'
+                bat '''
+                mvn allure:report ^
+                -s settings.xml ^
+                -Dmaven.repo.local="%MAVEN_REPO%"
+                '''
             }
         }
     }
