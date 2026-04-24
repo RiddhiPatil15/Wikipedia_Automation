@@ -15,21 +15,20 @@ public class BaseTest {
     }
 
     public static void initDriver() {
-        try {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-
-            driver = new RemoteWebDriver(
-                    new URL("http://localhost:4444"),
-                    options
-            );
-
-            driver.manage().window().maximize();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+    
+        driver = new ChromeDriver(options);
+    }
+     public static void quitDriver() {
+            if (driver != null) {
+                driver.quit();
+            }
         }
     }
+    
 
     public static void quitDriver() {
         if (driver != null) {
