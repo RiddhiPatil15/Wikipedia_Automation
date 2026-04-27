@@ -14,14 +14,14 @@ pipeline {
                 bat '''
                 if exist report rmdir /s /q report
                 if exist results.jtl del results.jtl
-                jmeter -n -t jmeter/wikipedia_load_test.jmx -l results.jtl -e -o report
+                jmeter -n -t C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\WikipediaBasedProject\jmeter\wikipedia_load_test.jmx -l results.jtl -e -o report
                 '''
             }
         }
 
         stage('Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                allure includeProperties: false, jdk: '', results: [[path: 'C:\Users\Riddh\OneDrive\Desktop\CapG\AIVS-JAVA\MCP\WikipediaBasedProject\allure-results']]
             }
         }
 
