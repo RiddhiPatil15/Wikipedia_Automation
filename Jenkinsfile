@@ -5,7 +5,7 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                bat 'mvn clean test'
+                bat 'mvn clean test -U -Dmaven.repo.local=.m2 -Dgrid.url=http://localhost:4444'
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'C:\\Users\\Riddh\\OneDrive\\Desktop\\CapG\\AIVS-JAVA\\MCP\\WikipediaBasedProject\\allure-results']]
+                allure includeProperties: false, jdk: '', results: [[path: 'C:/Users/Riddh/OneDrive/Desktop/CapG/AIVS-JAVA/MCP/WikipediaBasedProject/allure-results']]
             }
         }
 
